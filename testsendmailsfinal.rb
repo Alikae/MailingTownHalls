@@ -9,14 +9,14 @@ login = gets.chomp
 puts "password?"
 password = gets.chomp
 
-gmail = Gmail.connect(login, password)
-puts gmail.logged_in?
+gmail = Gmail.connect(login, password)   #Connection a l'API Gmail
+puts gmail.logged_in?                    #Vérification du log
 
-datahash = extract_names_and_mails()
+datahash = extract_names_and_mails()     #Récupération des noms/mails
 
-datahash.each { |name, email|
+datahash.each { |name, email|            #Pour chaque couple
   puts "treating: #{name}, #{email}"
-  mail = gmail.deliver do
+  mail = gmail.deliver do                #On écrit le mail
     to email
     subject "Le code, c'est important!"
     text_part do
@@ -29,9 +29,9 @@ Charles, co-fondateur de The Hacking Project pourra répondre à toutes vos ques
     end
   end
 
-  gmail.deliver(mail)
+  gmail.deliver(mail)                    #Et on l'envoies.
 }
 puts "Mails sent."
-puts "End of process."
+puts "End of process."                   #The END.
 end
 
