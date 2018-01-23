@@ -2,8 +2,10 @@ require "google_drive"
 require "open-uri"
 
 def extract_names_and_mails()
+  puts "Sorry but sheet key another time?"
+  sheet_key = gets.chomp
   session = GoogleDrive::Session.from_config("config.json")
-  ws = session.spreadsheet_by_key("1FM8cyfajHu1q68Kh2JWnL3xi1ThQ7pypfdQ1rWhQuwQ").worksheets[0]
+  ws = session.spreadsheet_by_key(sheet_key).worksheets[0]
   databasef = Hash.new
   stop = 0
   nb = 1
